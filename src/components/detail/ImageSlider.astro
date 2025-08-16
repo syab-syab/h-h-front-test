@@ -1,0 +1,48 @@
+---
+// Luminous, Viewer.js, Lity, 
+import '@splidejs/splide/css';
+import Image1 from '../../../src/image/mobile/dummy-image-1.png'
+import Image2 from '../../../src/image/mobile/dummy-image-2.png'
+import Image3 from '../../../src/image/mobile/dummy-image-3.png'
+
+// 縦:横 が 16:9 の比率にしたい
+// スタイルで式展開できるかどうか
+
+// const multip = 20;
+// const vertical = 16 * multip;
+// const beside = 9 * multip;
+---
+<!-- 縦長は16:9 -->
+<!-- 横長は9:16 -->
+<!-- スライダーのオプション↓ -->
+<!-- https://ja.splidejs.com/guides/options/ -->
+<div>
+  <section
+    id="image-carousel"
+    class="splide"
+    aria-label="お気に入りの写真"
+    data-splide='{"type":"loop","perPage":1, "width": "180px", "fixedWidth": "200px", "height": "320px"}'
+  >
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li class="splide__slide">
+          <img src={Image1.src} alt="">
+        </li>
+        <li class="splide__slide">
+          <img src={Image2.src} alt="">
+        </li>
+        <li class="splide__slide">
+          <img src={Image3.src} alt="">
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<script>
+  import Splide from '@splidejs/splide';
+  // new Splide('.splide').mount();
+  document.addEventListener( 'DOMContentLoaded', function () {
+    new Splide( '#image-carousel' ).mount();
+  } );
+</script>

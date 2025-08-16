@@ -1,0 +1,114 @@
+---
+const items = [
+	{
+		id:1,
+		title: "どういうサイトか短く",
+		description: "説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明",
+	},
+	{
+		id:2,
+		title: "広告も同じ",
+		description: "説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説",
+	},
+	{
+		id:3,
+		title: "どういうサイトか短く",
+		description: "説明説明説明説明説明説明説明説明説明説明説明説明説明説明",
+	},
+	{
+		id:4,
+		title: "広告も同じ",
+		description: "説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明",
+	}
+]
+---
+<div class="item-wrapper">
+	<!-- あとでitemは切り出す -->
+	{
+		items.map((item) => (
+			<div class="item">
+				<h3 class="item-title">{item.title}</h3>
+				<p class="item-description">{item.description}</p>
+				<div class="link-wrapper">
+					<a href="#" class="jump-link">サイトへ行く</a>
+					<a href="#" class="jump-detail">詳細</a>					
+				</div>
+
+			</div>
+		))
+	}
+</div>
+
+<!-- flex-boxのチートシート -->
+<!-- https://www.webcreatorbox.com/blog/css-flexbox-cheat-sheet -->
+<style>
+	.item-wrapper {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		padding: 10px 0;
+	}
+
+	.item-wrapper > .item:nth-child(1) {
+		background-color: #FFE293;
+	}
+
+	.item-wrapper > .item:nth-child(2) {
+		background-color: #9BF6FF;
+	}
+
+	.item-wrapper > .item:nth-child(3) {
+		background-color: #FFADAD;
+	}
+
+	.item-wrapper > .item:nth-child(4) {
+		background-color: #CAFFBF;
+	}
+
+	.item {
+		margin: 5px 5px 5px;
+		padding: 5px 5px 5px;
+		width: 40%;
+		background-color: red;
+		/* box-shadowの値を使いまわしたい */
+		box-shadow: 1px 1px 2px #dad5d5;
+	}
+
+	.item-title {
+		font-size: 15px;
+	}
+
+	.item-description {
+		font-size: 13px;
+	}
+
+	.link-wrapper {
+		display: flex;
+		justify-content: center;
+		margin: 10px 0;
+	}
+
+	.jump-link, .jump-detail {
+		background-color: #ffffff70;
+		border: solid 1px #ffffff70;
+		text-decoration: none;
+		color: black;
+		/* margin: 10px 20px; */
+		padding: 3px;
+		font-size: 10px;
+		/* box-shadowの値を使いまわしたい */
+		/* box-shadow: 1px 1px 2px #8b8b8b; */
+	}
+
+	.jump-link {
+		margin-right: 5px;
+	}
+
+	.jump-detail {
+		margin-left: 5px;
+	}
+
+	.jump-link:active, .jump-detail:active {
+		box-shadow: 1px 1px 2px #dad5d5 inset;
+	}
+</style>

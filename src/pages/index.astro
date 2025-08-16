@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/Header.astro'
+import Catchphrase from '../components/Catchphrase.astro'
+import TagWrapper from '../components/TagWrapper.astro'
+import ItemWrapper from '../components/ItemWrapper.astro'
+import ProfileWrapper from '../components/ProfileWrapper.astro'
+const pageTitle = "HandyHacks"
+---
+<!-- 二度もpageTitleを代入するのはくどいかも -->
+<BaseLayout pageTitle={pageTitle}>
+	<!-- 一時的にhrタグで区切る -->
+	<Header siteTitle={pageTitle} />
+	<!-- <hr /> -->
+	<Catchphrase />
+	<!-- <hr /> -->
+	<TagWrapper />
+	<!-- <hr /> -->
+	<ItemWrapper />
+	<!-- <hr /> -->
+	<ProfileWrapper />
+</BaseLayout>
