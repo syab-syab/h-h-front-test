@@ -2,14 +2,18 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 const pageTitle = "アプリ詳細ぺージ"
 import TopSection from '../components/detail/TopSection.astro';
-// import ImageSlider from '../components/detail/ImageSlider.astro'
+
+import Splidejs from '../components/detail/slider/splide/Splidejs.astro'
+// import Swiperjs from '../components/detail/slider/swiper/Swiper.astro'
+
 import DescriptionSection from '../components/detail/DescriptionSection.astro';
 ---
 <BaseLayout pageTitle={pageTitle}>
 <div class="container">
 
   <TopSection />
-  <!-- <ImageSlider /> -->
+  <Splidejs />
+  <!-- <Swiperjs /> -->
   <DescriptionSection />
 
 </div>

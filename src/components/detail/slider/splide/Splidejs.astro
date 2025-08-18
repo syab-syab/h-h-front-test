@@ -1,9 +1,9 @@
 ---
 // Luminous, Viewer.js, Lity, 
 import '@splidejs/splide/css';
-import Image1 from '../../../src/image/mobile/dummy-image-1.png'
-import Image2 from '../../../src/image/mobile/dummy-image-2.png'
-import Image3 from '../../../src/image/mobile/dummy-image-3.png'
+import Image1 from '../../../../image/mobile/dummy-image-1.png'
+import Image2 from '../../../../image/mobile/dummy-image-2.png'
+import Image3 from '../../../../image/mobile/dummy-image-3.png'
 
 // 縦:横 が 16:9 の比率にしたい
 // スタイルで式展開できるかどうか
@@ -16,12 +16,12 @@ import Image3 from '../../../src/image/mobile/dummy-image-3.png'
 <!-- 横長は9:16 -->
 <!-- スライダーのオプション↓ -->
 <!-- https://ja.splidejs.com/guides/options/ -->
-<div>
+<div class="slider-wrapper">
   <section
     id="image-carousel"
     class="splide"
     aria-label="お気に入りの写真"
-    data-splide='{"type":"loop","perPage":1, "width": "180px", "fixedWidth": "200px", "height": "320px"}'
+    data-splide='{"type":"loop","perPage":1}'
   >
     <div class="splide__track">
       <ul class="splide__list">
@@ -39,10 +39,32 @@ import Image3 from '../../../src/image/mobile/dummy-image-3.png'
   </section>
 </div>
 
+<style>
+.slider-wrapper {
+  margin-top: 10px;
+}
+
+.splide__slide img {
+  width: 100%;
+  height: auto;
+}
+
+.splide__slide img {
+  width: 30%;
+  /* height: 70%; */
+  object-fit: cover;
+}
+</style>
+
 <script>
   import Splide from '@splidejs/splide';
-  // new Splide('.splide').mount();
+
   document.addEventListener( 'DOMContentLoaded', function () {
-    new Splide( '#image-carousel' ).mount();
+    new Splide( '#image-carousel'
+  //   , {
+	// 	cover      : true,
+	// 	heightRatio: 1,
+  // } 
+).mount();
   } );
 </script>
