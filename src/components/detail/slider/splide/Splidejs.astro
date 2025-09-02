@@ -26,7 +26,7 @@ import Image3 from '../../../../image/mobile/dummy-image-3.png'
     <div class="splide__track">
       <ul class="splide__list">
         <li class="splide__slide">
-          <img src={Image1.src} alt="">
+          <img src={Image1.src} alt="" class="modal">
         </li>
         <li class="splide__slide">
           <img src={Image2.src} alt="">
@@ -61,10 +61,17 @@ import Image3 from '../../../../image/mobile/dummy-image-3.png'
 
   document.addEventListener( 'DOMContentLoaded', function () {
     new Splide( '#image-carousel'
-  //   , {
-	// 	cover      : true,
-	// 	heightRatio: 1,
-  // } 
-).mount();
+    //   , {
+    // 	cover      : true,
+    // 	heightRatio: 1,
+    // } 
+  ).mount();
   } );
+
+  const testAlert = () => alert("test")
+
+  const modals = document.querySelectorAll("img")
+  modals.forEach((modal) => {
+    modal.addEventListener("click", testAlert)
+  })
 </script>

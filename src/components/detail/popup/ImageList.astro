@@ -1,0 +1,40 @@
+---
+import Image1 from '../../../image/mobile/dummy-image-1.png'
+import Image2 from '../../../image/mobile/dummy-image-2.png'
+import Image3 from '../../../image/mobile/dummy-image-3.png'
+import Image4 from '../../../image/mobile/dummy-image-4.png'
+import Image5 from '../../../image/mobile/dummy-image-5.png'
+
+const images = [
+  Image1,
+  Image2,
+  Image3,
+  Image4,
+  Image5
+]
+---
+<div class="image-wrapper">
+  {
+    images.map((image) => (
+      <img src={image.src} alt="" />
+    ))
+  }
+</div>
+
+<style>
+  .image-wrapper {
+    margin-top: 10px;
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-around;
+    overflow-x: scroll;
+    align-items: center;
+    align-content: space-between;
+  }
+
+  img {
+    width: 30%;
+    /* margin-right: 10px; */
+    border: 1px solid transparent;
+  }
+</style>

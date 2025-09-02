@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import Image1 from '../../../../image/mobile/dummy-image-1.png'
+import Image2 from '../../../../image/mobile/dummy-image-2.png'
+import Image3 from '../../../../image/mobile/dummy-image-3.png'
 
 export default function ImageSlider() {
   const [modalImage, setModalImage] = useState(null);
 
   const images = [
-    "../../../../image/mobile/dummy-image-1.png",
-    "../../../../image/mobile/dummy-image-2.png",
-    "../../../../image/mobile/dummy-image-3.png",
+    // "../../../../image/mobile/dummy-image-1.png",
+    // "../../../../image/mobile/dummy-image-2.png",
+    // "../../../../image/mobile/dummy-image-3.png",
+    Image1, Image2, Image3
   ];
 
   return (
@@ -18,10 +22,10 @@ export default function ImageSlider() {
         {images.map((src, index) => (
           <SwiperSlide key={index}>
             <img
-              src={src}
+              src={src.src}
               alt={`slide-${index}`}
               className="cursor-pointer rounded-lg"
-              onClick={() => setModalImage(src)}
+              onClick={() => setModalImage(src.src)}
             />
           </SwiperSlide>
         ))}
