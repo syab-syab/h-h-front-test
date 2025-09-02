@@ -16,25 +16,83 @@ const images = [
 <div class="image-wrapper">
   {
     images.map((image) => (
-      <img src={image.src} alt="" />
+      <img class="showDialogBtn" src={image.src} alt="" />
     ))
   }
 </div>
+
+<dialog id="imgDialog">
+  <img id="dialogImg" src="" alt="" />
+</dialog>
+
+<!-- <style>
+  .image-wrapper {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    overflow-x: scroll;
+    align-items: center;
+    align-content: space-between;
+  }
+  .image-wrapper > img {
+    width: 20%;
+    border: 1px solid transparent;
+  }
+</style> -->
 
 <style>
   .image-wrapper {
     margin-top: 10px;
     display: flex;
-    /* flex-wrap: wrap; */
     justify-content: space-around;
     overflow-x: scroll;
     align-items: center;
     align-content: space-between;
   }
 
-  img {
+  .image-wrapper > img {
     width: 30%;
-    /* margin-right: 10px; */
     border: 1px solid transparent;
+    cursor: zoom-in;
+  }
+
+  dialog {
+    border: none;
+    padding: 0;
+    background: transparent;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  #dialogImg {
+    max-width: 90vw;
+    max-height: 90vh;
+    cursor: zoom-out;
   }
 </style>
+
+<script>
+  const dialog = document.getElementById("imgDialog");
+  const dialogImg = document.getElementById("dialogImg");
+
+  if (dialog instanceof HTMLDialogElement && dialogImg instanceof HTMLImageElement) {
+    document.querySelectorAll(".showDialogBtn").forEach(img => {
+      const image = img as HTMLImageElement;
+      image.addEventListener("click", () => {
+        dialogImg.src = image.src;
+        dialog.showModal();
+      });
+    });
+
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+</script>
