@@ -4,6 +4,7 @@ const {siteTitle} = Astro.props;
 <header class="header">
   <h1 class="title">{ siteTitle }</h1>
   <ul class="menu">
+    <!-- メニューは必要無いかも -->
     <li>作品一覧</li>
     <li>プロフィール</li>
   </ul>
@@ -12,9 +13,11 @@ const {siteTitle} = Astro.props;
 <style>
   .header {
     display: flex;
-    justify-self: center;
+    /* justify-self: center; */
     align-items: center;
-    padding: 10px 10px 10px;
+    justify-content: space-between;
+    /* paddingは上下のみ */
+    padding: 10px 0;
   }
 
   .title {
