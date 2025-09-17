@@ -1,14 +1,19 @@
 ---
+const { siteTitle, lightDescription } = Astro.props
 ---
 <div class="top-wrapper">
   <h1 class="display-name">
-    達成率ToDoリスト☑
+    ここに一言でどういうサイトか
   </h1>
   <p class="true-title">
-    サイト名: Tasks Maketh Man List
+    サイト名: { siteTitle }
   </p>
-  <p class="light-description">
-    達成率によってヘッダーの色が変わるToDoリストです。
+  <div class="">
+
+  </div>
+  <p class="light-description" set:html={ lightDescription }>
+    <!-- 軽い概要 -->
+    <!-- { lightDescription } -->
   </p>
   <a class="jump-link-btn" href="#">
     サイトへ行く
