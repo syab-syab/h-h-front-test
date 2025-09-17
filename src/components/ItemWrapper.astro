@@ -21,8 +21,22 @@ const items = [
 		description: "説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明",
 	}
 ]
+
+//microCMS呼び出し
+import { getWebContents } from "../library/microcms";
+const response = await getWebContents({ fields: ["id", "title"] });
 ---
 <div class="item-wrapper">
+	<ul>
+		{
+			response.contents.map((content: any) => (
+				<li>
+					<a href={content.id}>{content.title}</a>
+				</li>
+			))
+		}
+	</ul>
+	<hr />
 	<!-- あとでitemは切り出す -->
 	{
 		items.map((item) => (
