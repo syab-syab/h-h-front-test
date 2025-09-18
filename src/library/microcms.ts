@@ -11,7 +11,10 @@ const client = createClient({
 // 旧Blog
 export type WebContent = {
   title: string;
-  content: string;
+  features: string;
+  url: string;
+  shortdescription: string;
+  description: string;
 } & MicroCMSListContent;
 
 // APIの呼び出し

@@ -3,28 +3,29 @@ const items = [
 	{
 		id:1,
 		title: "どういうサイトか短く",
-		description: "説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明",
+		description: "説明",
 	},
 	{
 		id:2,
 		title: "広告も同じ",
-		description: "説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説",
+		description: "説明",
 	},
 	{
 		id:3,
 		title: "どういうサイトか短く",
-		description: "説明説明説明説明説明説明説明説明説明説明説明説明説明説明",
+		description: "説明",
 	},
 	{
 		id:4,
 		title: "広告も同じ",
-		description: "説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明",
+		description: "説明",
 	}
 ]
 
 //microCMS呼び出し
 import { getWebContents } from "../library/microcms";
-const response = await getWebContents({ fields: ["id", "title"] });
+// const response = await getWebContents({ fields: ["id", "title"] });
+const response = await getWebContents({ fields: ["id", "features", "shortdescription", "url"] });
 ---
 <div class="item-wrapper">
 		{
@@ -32,13 +33,14 @@ const response = await getWebContents({ fields: ["id", "title"] });
 			<div class="item">
 				<h3 class="item-title">
 					{/* 後でタイトルから「○○ができるサイト」という形式に変更 */}
-					{content.title}
+					{content.features}
 				</h3>
 				<p class="item-description">
-					説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明
+					{content.shortdescription}
 				</p>
 				<div class="link-wrapper">
-					<a href="#" class="jump-link">サイトへ行く</a>
+					{/* リンクへのジャンプ機能が少しおかしいので後で修正 */}
+					<a href={content.url} class="jump-link">サイトへ行く</a>
 					<a href={content.id} class="jump-detail">詳細</a>
 				</div>
 			</div>

@@ -18,14 +18,16 @@ export async function getStaticPaths() {
 //記事の詳細情報を取得
 const { webcontentId } = Astro.params;
 const webcontent = await getWebContentDetail(webcontentId as string);
-const pageTitle = webcontent.title
-const lightDescription = webcontent.content
-console.log(webcontent.content)
+const siteFetures = webcontent.features
+const siteTitle = webcontent.title
+const siteUrl = webcontent.url
+const shortDescription = webcontent.shortdescription
+const siteDescription = webcontent.description
 ---
-<BaseLayout pageTitle={pageTitle}>
-  <TopSection siteTitle={pageTitle} lightDescription={lightDescription} />
+<BaseLayout pageTitle={siteFetures}>
+  <TopSection siteFeatures={siteFetures} siteTitle={siteTitle} shortDescription={shortDescription} siteUrl={siteUrl} />
   <ImageList />
-  <DescriptionSection />
+  <DescriptionSection siteDescription={siteDescription} />
     <!-- <h1 class="title">{webcontent.title}</h1>
     <p class="publishedAt">公開日時：{webcontent.publishedAt}</p>
     <div class="post" set:html={webcontent.content}></div> -->

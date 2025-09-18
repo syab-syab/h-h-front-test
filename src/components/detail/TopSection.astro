@@ -1,9 +1,9 @@
 ---
-const { siteTitle, lightDescription } = Astro.props
+const { siteFeatures, siteTitle, shortDescription, siteUrl } = Astro.props
 ---
 <div class="top-wrapper">
   <h1 class="display-name">
-    ここに一言でどういうサイトか
+    { siteFeatures }
   </h1>
   <p class="true-title">
     サイト名: { siteTitle }
@@ -11,11 +11,11 @@ const { siteTitle, lightDescription } = Astro.props
   <div class="">
 
   </div>
-  <p class="light-description" set:html={ lightDescription }>
+  <p class="light-description">
     <!-- 軽い概要 -->
-    <!-- { lightDescription } -->
+    { shortDescription }
   </p>
-  <a class="jump-link-btn" href="#">
+  <a class="jump-link-btn" href={siteUrl}>
     サイトへ行く
   </a>
 </div>

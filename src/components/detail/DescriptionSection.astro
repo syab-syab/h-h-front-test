@@ -1,13 +1,10 @@
 ---
+const { siteDescription } = Astro.props
 ---
 <div class="description-wrapper">
   <p class="description-header">説明</p>
   <p class="description-content">
-    タスクごとに期限を設定できるToDoアプリです。
-    <br>
-    <br>
-    指定した期限をクリアしたらヘッダーの色が変わります。
-    クリアできなければリセットされます。
+    { siteDescription }
   </p>
 </div>
 
