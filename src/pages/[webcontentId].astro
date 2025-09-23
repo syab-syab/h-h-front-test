@@ -15,6 +15,25 @@ export async function getStaticPaths() {
   }));
 }
 
+// 画像渡しテスト
+import Image1 from '../image/mobile/dummy-image-1.png'
+import Image2 from '../image/mobile/dummy-image-2.png'
+import ImageSe from '../image/iphonesedummy.png'
+import Image3 from '../image/mobile/dummy-image-3.png'
+import ImageEx from '../image/yokonaga.png'
+import Image4 from '../image/mobile/dummy-image-4.png'
+import Image5 from '../image/mobile/dummy-image-5.png'
+
+const images = [
+  Image1,
+  Image2,
+  ImageSe,
+  Image3,
+  ImageEx,
+  Image4,
+  Image5
+]
+
 //記事の詳細情報を取得
 const { webcontentId } = Astro.params;
 const webcontent = await getWebContentDetail(webcontentId as string);
@@ -26,7 +45,7 @@ const siteDescription = webcontent.description
 ---
 <BaseLayout pageTitle={siteFetures}>
   <TopSection siteFeatures={siteFetures} siteTitle={siteTitle} shortDescription={shortDescription} siteUrl={siteUrl} />
-  <ImageList />
+  <ImageList images={images} />
   <DescriptionSection siteDescription={siteDescription} />
     <!-- <h1 class="title">{webcontent.title}</h1>
     <p class="publishedAt">公開日時：{webcontent.publishedAt}</p>
