@@ -4,7 +4,7 @@ const {images} = Astro.props
 <div class="image-wrapper">
   {
     images.map((image: any) => (
-      <img class="showDialogBtn" src={image.src} alt="" />
+      <img class="showDialogBtn" src={image.url} alt="" />
     ))
   }
 </div>
@@ -60,9 +60,10 @@ const {images} = Astro.props
     background: rgba(0, 0, 0, 0.6);
   }
 
+  /* ここはあまりデカすぎても良くないから70くらい */
   #dialogImg {
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: 70vw;
+    max-height: 70vh;
     cursor: zoom-out;
   }
 </style>

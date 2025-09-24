@@ -7,6 +7,14 @@ const client = createClient({
   apiKey: import.meta.env.MICROCMS_API_KEY,
 });
 
+// 複数画像の型
+type ImageList = {
+  url: string,
+  height: number,
+  width: number,
+  alt: string
+}
+
 // 型定義
 // 旧Blog
 export type WebContent = {
@@ -15,6 +23,7 @@ export type WebContent = {
   url: string;
   shortdescription: string;
   description: string;
+  images: Array<ImageList>;
 } & MicroCMSListContent;
 
 // APIの呼び出し
