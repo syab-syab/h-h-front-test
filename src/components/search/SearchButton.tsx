@@ -1,5 +1,6 @@
 import { useState } from "preact/hooks";
 import type { JSX } from "preact"
+import styles from "./Search.module.css"
 
 const SearchButton = () => {
   const [value, setValue] = useState(
@@ -23,19 +24,22 @@ const SearchButton = () => {
 
   return (
     <form
+      class={styles.formWrapper}
       role="search"
       onSubmit={handleSubmit}
     >
-      <label for="blog_search">
-        記事を検索
+      <label class={styles.formLabel} for="blog_search">
+        コンテンツを検索
       </label>
       <input
         id="blog_search"
         type="search"
+        class={styles.searchBar}
         value={value}
+        placeholder="キーワード検索"
         onChange={handleChange}
       />
-      <button>検索</button>
+      <button class={styles.searchBtn}>検索</button>
     </form>
   );
 };
