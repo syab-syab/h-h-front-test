@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+const pageTitle = "検索ページ"
+import BlogSearch from "../components/search/BlogSearch"
+import SearchButton from "../components/search/SearchButton"
+---
+<BaseLayout pageTitle={pageTitle}>
+  <main>
+    <SearchButton client:visible />
+    <BlogSearch client:only="preact" />
+  </main>
+</BaseLayout>
