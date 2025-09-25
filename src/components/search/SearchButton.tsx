@@ -1,5 +1,4 @@
 import { useState } from "preact/hooks";
-// import type { JSXInternal } from "preact/src/jsx";
 import type { JSX } from "preact"
 
 const SearchButton = () => {

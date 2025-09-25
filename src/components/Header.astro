@@ -1,10 +1,20 @@
 ---
-const {siteTitle} = Astro.props;
+// const {siteTitle} = Astro.props;
 ---
 <header class="header">
-  <h1 class="title">{ siteTitle }</h1>
+  <!-- <h1 class="title">{ siteTitle }</h1> -->
+   <h1 class="title">
+    <a href="/">
+      HandyHacks
+    </a>
+  </h1>
   <ul class="menu">
     <!-- メニューは必要無いかも -->
+    <li>
+      <a href="/search">
+        検索
+      </a>
+    </li>
     <li>自作</li>
     <li>他作</li>
   </ul>
@@ -21,12 +31,17 @@ const {siteTitle} = Astro.props;
   }
 
   .title {
-    color: black;
+    /* color: black; */
     background: #FFE293;
     font-size: 20px;
     padding: 10px 15px;
     /* box-shadowの値を使いまわしたい */
 		box-shadow: 1px 1px 1px #8b8b8b;
+  }
+
+  .title > a {
+    text-decoration: none;
+    color: black;
   }
 
   .menu {
@@ -38,5 +53,10 @@ const {siteTitle} = Astro.props;
     font-size: 13px;
     width: auto;
     padding: 5px 5px;
+  }
+
+  .menu > li > a {
+    text-decoration: none;
+    color: black;
   }
 </style>
