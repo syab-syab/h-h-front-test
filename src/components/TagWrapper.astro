@@ -14,8 +14,8 @@ const tags = await client.get({
 	{
 		tags.contents.map((tag: any) => (
 			<div class="tag">
-				<a href="">
-					#{tag.name} | {tag.id}
+				<a href={`/tags/${tag.id}`}>
+					#{tag.name}
 				</a>
 			</div>
 		))

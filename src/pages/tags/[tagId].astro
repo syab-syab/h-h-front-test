@@ -1,0 +1,37 @@
+---
+import Header from "../../components/Header.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import {client} from "../../library/microcms"
+
+export async function getStaticPaths() {
+  const tags = await client.get({
+    endpoint: 'tag'
+  });
+  return tags.contents.map((tag: any) => ({
+    params: {
+      tagId: tag.id,
+    },
+  }));
+}
+const { tagId } = Astro.params
+const items = await client.get({
+ endpoint: 'webcontents', //記事APIのエンドポイント
+ queries: { filters: `tags[contains]${tagId}`} //カテゴリ用スキーマ名を指定
+});
+---
+<BaseLayout>
+  <Header />
+  <h1>タグのテストページ</h1>
+  <ul>
+    {
+      items.contents.map((item: any) => (
+        <li>
+          {/* tag/tagId のurlにジャンプしてしまうので後で直す */}
+          <a href={item.id}>{item.features}</a>
+          |
+          <span>{item.title}</span>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
