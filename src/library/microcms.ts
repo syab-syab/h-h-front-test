@@ -43,3 +43,8 @@ export const getWebContentDetail = async (
     queries,
   });
 };
+
+// type Creator = {
+//   name: string;
+//   classification: string;
+// }

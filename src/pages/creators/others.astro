@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import Header from "../../components/Header.astro"
+import { client } from "../../library/microcms"
+
+const items = await client.get({
+ endpoint: 'webcontents', //記事APIのエンドポイント
+ queries: { filters: 'creators[equals]srheiyya2a'} //カテゴリ用スキーマ名を指定
+});
+
+---
+<BaseLayout>
+  <Header />
+  <h1>他社製</h1>
+  <ul>
+    全{items.totalCount}件
+    {
+      items.contents.map((item: any) => (
+        <li>
+          {item.title}
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
