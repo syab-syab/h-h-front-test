@@ -1,12 +1,23 @@
 ---
-const tags = ["#ツール", "#娯楽", "#情報", "#Webアプリ", "#拡張機能"]
+// const tags = ["#ツール", "#娯楽", "#情報", "#Webアプリ", "#拡張機能"]
+// anyは後で直す
+// const {tags} = Astro.props
+import {client} from "../library/microcms"
+const tags = await client.get({
+ endpoint: 'tag' //記事APIのエンドポイント
+//  queries: { filters: 'creators[equals]90cm8jj2mkl'}
+});
 ---
 <div class="tag-wrapper">
 	<!-- タグは後で切り出す -->
 	<!-- <span>#タグ</span> -->
 	{
-		tags.map((tag) => (
-			<div class="tag">{tag}</div>
+		tags.contents.map((tag: any) => (
+			<div class="tag">
+				<a href="">
+					#{tag.name} | {tag.id}
+				</a>
+			</div>
 		))
 	}
 </div>
