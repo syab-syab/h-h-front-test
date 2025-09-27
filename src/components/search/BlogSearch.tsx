@@ -28,11 +28,11 @@ const BlogSearch = () => {
           {data?.contents.map(({ id, features, title, url}) => (
             // スタイルはまた後で考える
             <div class={styles.item} key={id}>
-              <h3 class={styles.title}>
+              <h3>
                 {/* 後でタイトルから「○○ができるサイト」という形式に変更 */}
                 {features}
               </h3>
-              <p>サイト名:{title}</p>
+              <p class={styles.title}>サイト名:{title}</p>
               <div class={styles.linkWrapper}>
                 {/* リンクへのジャンプ機能が少しおかしいので後で修正 */}
                 <a href={url} class={styles.jumpLink}>サイトへ行く</a>

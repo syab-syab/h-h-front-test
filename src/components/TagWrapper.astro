@@ -15,6 +15,7 @@ const tags = await client.get({
 		tags.contents.map((tag: any) => (
 			<div class="tag">
 				<a href={`${tag.id}`}>
+					{/* tag.nameも一緒に送りたい */}
 					#{tag.name}
 				</a>
 			</div>

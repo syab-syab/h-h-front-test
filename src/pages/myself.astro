@@ -10,23 +10,94 @@ const items = await client.get({
 });
 
 ---
-<BaseLayout>
+<BaseLayout pageTitle={"自社製Webアプリ | HandyHacks"}>
   <Header />
   <h1>自社製</h1>
-  <ul>
+  <div>
     全{items.totalCount}件
     {
       items.contents.map((item: any) => (
-        <li>
-          <a href={`detail/${item.id}`}>
+        <div class="item">
+          <h3>
             {item.features}
-          </a>
-          |
-          <span>
-            {item.title}
-          </span>
-        </li>
+          </h3>
+          <p class="title">
+            サイト名:{item.title}
+          </p>
+          <div class="linkWrapper">
+            <a href={item.url} class="jumpLink">
+              サイトへ行く
+            </a>
+            <a href={`detail/${item.id}`} class="jumpDetail">
+              詳細
+            </a>
+          </div>
+        </div>
       ))
     }
-  </ul>
+  </div>
+
+
 </BaseLayout>
+<style>
+.item {
+	margin: 5px 5px 5px;
+	padding: 5px 5px 5px;
+	box-shadow: 1px 1px 2px #dad5d5;
+}
+
+.item:nth-child(1) {
+	
+	background-color: #9BF6FF;
+}
+
+.item:nth-child(2) {
+	background-color: #FFADAD;
+}
+
+.item:nth-child(3) {
+	background-color: #CAFFBF;
+}
+
+.item-wrapper > .item:nth-child(4) {
+	background-color: #9BF6FF;
+}
+
+.title {
+	font-size: 11px;
+}
+
+.item-description {
+	font-size: 13px;
+}
+
+.linkWrapper {
+	display: flex;
+	justify-content: center;
+	margin: 10px 0;
+}
+
+.jumpLink, .jumpDetail {
+	background-color: #ffffff70;
+	border: solid 1px #ffffff70;
+	text-decoration: none;
+	color: black;
+	/* margin: 10px 20px; */
+	padding: 3px;
+	font-size: 10px;
+	/* box-shadowの値を使いまわしたい */
+	/* box-shadow: 1px 1px 2px #8b8b8b; */
+}
+
+.jumpLink {
+	margin-right: 5px;
+}
+
+.jumpDetail {
+	margin-left: 5px;
+}
+
+.jumpLink:active, .jumpDetail:active {
+	box-shadow: 1px 1px 2px #dad5d5 inset;
+}
+</style>
