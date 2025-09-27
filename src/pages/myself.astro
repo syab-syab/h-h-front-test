@@ -1,7 +1,7 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro"
-import Header from "../../components/Header.astro"
-import { client } from "../../library/microcms"
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Header from "../components/Header.astro"
+import { client } from "../library/microcms"
 
 // creatorは微妙だから文言を変える
 const items = await client.get({
@@ -18,7 +18,13 @@ const items = await client.get({
     {
       items.contents.map((item: any) => (
         <li>
-          {item.title}
+          <a href={`detail/${item.id}`}>
+            {item.features}
+          </a>
+          |
+          <span>
+            {item.title}
+          </span>
         </li>
       ))
     }

@@ -1,10 +1,11 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
-import TopSection from '../components/detail/TopSection.astro';
-import ImageList from '../components/detail/popup/ImageList.astro';
-import DescriptionSection from '../components/detail/DescriptionSection.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Header from '../../components/Header.astro';
+import TopSection from '../../components/detail/TopSection.astro';
+import ImageList from '../../components/detail/popup/ImageList.astro';
+import DescriptionSection from '../../components/detail/DescriptionSection.astro';
 
-import { getWebContents, getWebContentDetail } from "../library/microcms";
+import { getWebContents, getWebContentDetail } from "../../library/microcms";
 // 詳細記事ページの全パスを取得
 export async function getStaticPaths() {
   const response = await getWebContents({ fields: ["id"] });
@@ -45,6 +46,7 @@ const siteDescription = webcontent.description
 const images = webcontent.images
 ---
 <BaseLayout pageTitle={siteFetures}>
+  <Header />
   <TopSection siteFeatures={siteFetures} siteTitle={siteTitle} shortDescription={shortDescription} siteUrl={siteUrl} />
   <ImageList images={images} />
   <DescriptionSection siteDescription={siteDescription} />

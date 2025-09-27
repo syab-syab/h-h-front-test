@@ -1,7 +1,7 @@
 ---
-import Header from "../../components/Header.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro"
-import {client} from "../../library/microcms"
+import Header from "../components/Header.astro";
+import BaseLayout from "../layouts/BaseLayout.astro"
+import {client} from "../library/microcms"
 
 export async function getStaticPaths() {
   const tags = await client.get({
@@ -27,7 +27,7 @@ const items = await client.get({
       items.contents.map((item: any) => (
         <li>
           {/* tag/tagId のurlにジャンプしてしまうので後で直す */}
-          <a href={item.id}>{item.features}</a>
+          <a href={`detail/${item.id}`}>{item.features}</a>
           |
           <span>{item.title}</span>
         </li>

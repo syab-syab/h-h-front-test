@@ -42,7 +42,7 @@ const response = await getWebContents({ fields: ["id", "features", "shortdescrip
 				<div class="link-wrapper">
 					{/* リンクへのジャンプ機能が少しおかしいので後で修正 */}
 					<a href={content.url} class="jump-link">サイトへ行く</a>
-					<a href={content.id} class="jump-detail">詳細</a>
+					<a href={`detail/${content.id}`} class="jump-detail">詳細</a>
 				</div>
 			</div>
 			))
