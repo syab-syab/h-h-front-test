@@ -1,0 +1,38 @@
+---
+import Header from '../../components/Header.astro';
+import Pagination from '../../components/Pagination.astro';
+// import Layout from '../../layouts/Layout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getWebContents } from '../../library/microcms';
+import type { GetStaticPathsOptions } from 'astro';
+import type { MicroCMSListResponse } from 'microcms-js-sdk';
+import { type WebContent } from '../../library/microcms';
+
+export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+const response: MicroCMSListResponse<Pick<WebContent, 'title'>> = await getWebContents({ fields: ["id", "features", "shortdescription", "url"] });
+ return paginate(response.contents, { pageSize: 3 });
+};
+
+const { page } = Astro.props;
+const isFirstPage = page.url.prev === '/page/1';
+---
+
+<BaseLayout pageTitle={`${page.currentPage}ページ目 | HandyHacks`}>
+<Header />
+ <main>
+   <Pagination
+     data={page.data}
+     currentPage={page.currentPage}
+     lastPage={page.lastPage}
+     urlPrev={`${isFirstPage ? '/' : page.url.prev}`}
+     urlNext={page.url.next}
+   />
+ </main>
+</BaseLayout>
+<style>
+ main {
+   margin: auto;
+   padding: 1em;
+   max-width: 60ch;
+ }
+</style>

@@ -1,0 +1,152 @@
+---
+import type { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk';
+import { type WebContent } from '../library/microcms';
+
+interface Props {
+ data: (Pick<WebContent, 'title'> & {
+   title: string;
+ } & MicroCMSContentId &
+   MicroCMSDate)[];
+ currentPage: number;
+ lastPage: number;
+ urlPrev: string | undefined;
+ urlNext: string | undefined;
+}
+
+const { data, currentPage, lastPage, urlPrev, urlNext } = Astro.props;
+---
+<h1>
+{currentPage === 1 ? <></> : <h1>{currentPage}ページ</h1>}
+</h1>
+
+<div class="item-wrapper">
+  {
+    data.map((content: any) => (
+			<div class="item">
+				<h3 class="item-title">
+					{/* 後でタイトルから「○○ができるサイト」という形式に変更 */}
+					{content.features}
+				</h3>
+				<p class="item-description">
+					{content.shortdescription}
+				</p>
+				<div class="link-wrapper">
+					{/* リンクへのジャンプ機能が少しおかしいので後で修正 */}
+					<a href={content.url} class="jump-link">サイトへ行く</a>
+					<a href={`detail/${content.id}`} class="jump-detail">詳細</a>
+				</div>
+			</div>
+    ))
+  }
+
+</div>
+<div>
+  <a href={urlPrev} class:list={['setPage', { invalid: !urlPrev }]}>{'< Next'}</a>
+  <!-- ページ数が多くなったら変更しそう -->
+  {
+    [...Array(lastPage)].map((_, id) => (
+      <a class:list={['pageNumber', { active: currentPage === id + 1 }]} href={id === 0 ? '/' : `/page/${id + 1}/`}>
+        {id + 1}
+      </a>
+    ))
+  }
+  <a href={urlNext} class:list={['setPage', { invalid: !urlNext }]}>{'Prev >'}</a>
+</div>
+
+<style>
+.pageNumber {
+  color: black;
+  text-decoration: none;
+  padding: 4px 8px;
+  display: inline-block;
+  text-align: center;
+}
+
+.active {
+  font-weight: 700;
+  border-bottom: 1px solid black;
+}
+
+.setPage {
+  color: black;
+  text-decoration: none;
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.invalid {
+  color: gray;
+  border: 1px solid gray;
+}
+
+/* ********** */
+.item-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.item-wrapper > .item:nth-child(1) {
+  background-color: #FFE293;
+}
+
+.item-wrapper > .item:nth-child(2) {
+  background-color: #9BF6FF;
+}
+
+.item-wrapper > .item:nth-child(3) {
+  background-color: #FFADAD;
+}
+
+.item-wrapper > .item:nth-child(4) {
+  background-color: #CAFFBF;
+}
+
+.item {
+  margin: 5px 5px 5px;
+  padding: 5px 5px 5px;
+  width: 40%;
+  background-color: red;
+  /* box-shadowの値を使いまわしたい */
+  box-shadow: 1px 1px 2px #dad5d5;
+}
+
+.item-title {
+  font-size: 15px;
+}
+
+.item-description {
+  font-size: 13px;
+}
+
+.link-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.jump-link, .jump-detail {
+  background-color: #ffffff70;
+  border: solid 1px #ffffff70;
+  text-decoration: none;
+  color: black;
+  /* margin: 10px 20px; */
+  padding: 3px;
+  font-size: 10px;
+  /* box-shadowの値を使いまわしたい */
+  /* box-shadow: 1px 1px 2px #8b8b8b; */
+}
+
+.jump-link {
+  margin-right: 5px;
+}
+
+.jump-detail {
+  margin-left: 5px;
+}
+
+.jump-link:active, .jump-detail:active {
+  box-shadow: 1px 1px 2px #dad5d5 inset;
+}
+</style>
