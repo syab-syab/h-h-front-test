@@ -1,6 +1,7 @@
 ---
 import type { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk';
 import { type WebContent } from '../library/microcms';
+import IndexItem from './IndexItem.astro';
 
 interface Props {
  data: (Pick<WebContent, 'title'> & {
@@ -14,6 +15,12 @@ interface Props {
 }
 
 const { data, currentPage, lastPage, urlPrev, urlNext } = Astro.props;
+// BGArrayは切り分けた方が良いかも
+// TopSectionとかで使うから
+const BGArray = [
+  "#ff8e8e", "#ff8ec6", "#ff8eff", "#c68eff", "#8e8eff", "#8ec6ff", "#8effff", "#8effc6", "#8eff8e", "#c6ff8e", "#ffff8e", "#ffc68e"
+]
+// const itemBGColor = BGArray[1]
 ---
 <h1>
 {currentPage === 1 ? <></> : <h1>{currentPage}ページ</h1>}
@@ -21,21 +28,15 @@ const { data, currentPage, lastPage, urlPrev, urlNext } = Astro.props;
 
 <div class="item-wrapper">
   {
-    data.map((content: any) => (
-			<div class="item">
-				<h3 class="item-title">
-					{content.features}
-				</h3>
-				<p class="item-description">
-					{content.shortdescription}
-				</p>
-				<div class="link-wrapper">
-					<a href={content.url} class="jump-link">サイトへ行く</a>
-          {/* detail/id だとエラーが出るから */}
-          {/* 直前に/を付けて /detail/id にする */}
-					<a href={`/detail/${content.id}`} class="jump-detail">詳細</a>
-				</div>
-			</div>
+    data.map((content: any, index) => (
+      // ここから切り分ける
+      <IndexItem
+        features={content.features}
+        shortdescription={content.shortdescription}
+        url={content.url}
+        id={content.id}
+        backGroundColor={BGArray[Math.floor(Math.random() * (BGArray.length + 1))]}
+      />
     ))
   }
 
@@ -50,15 +51,6 @@ const { data, currentPage, lastPage, urlPrev, urlNext } = Astro.props;
         </a>
       ))
     }
-    <!-- <a href="#" class="pageNumber">7</a>
-    <a href="#" class="pageNumber">8</a>
-    <a href="#" class="pageNumber">9</a>
-    <a href="#" class="pageNumber">10</a>
-    <a href="#" class="pageNumber">11</a>
-    <a href="#" class="pageNumber">12</a>
-    <a href="#" class="pageNumber">13</a>
-    <a href="#" class="pageNumber">14</a>
-    <a href="#" class="pageNumber">15</a> -->
   </div>
   <a href={urlNext} class:list={['setPage', { invalid: !urlNext }]}>{'Prev >'}</a>
 </div>
@@ -85,7 +77,7 @@ const { data, currentPage, lastPage, urlPrev, urlNext } = Astro.props;
 
 .active {
   font-weight: 700;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
 
 .setPage {
