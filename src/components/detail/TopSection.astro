@@ -1,5 +1,5 @@
 ---
-const { siteFeatures, siteTitle, shortDescription, siteUrl } = Astro.props
+const { siteFeatures, siteTitle, shortDescription, siteUrl, backGroundColor } = Astro.props
 ---
 <div class="top-wrapper">
   <h1 class="display-name">
@@ -20,9 +20,9 @@ const { siteFeatures, siteTitle, shortDescription, siteUrl } = Astro.props
   </a>
 </div>
 
-<style>
+<style define:vars={{ backGroundColor }}>
 .top-wrapper {
-  background-color: #FFE293;
+  background-color: var(--backGroundColor);
   padding: 20px 10px;
 }
 

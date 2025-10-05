@@ -1,5 +1,7 @@
 import useSWR from "swr";
 import { getWebContents } from "../../library/microcms";
+// import TagIndexItem from "../tagIndex/tagIndexItem.astro";
+import { BGArray } from "../../library/randomcolor";
 import styles from "./Search.module.css"
 
 const BlogSearch = () => {
@@ -26,15 +28,12 @@ const BlogSearch = () => {
       {data?.contents.length !== 0 ? (
         <>
           {data?.contents.map(({ id, features, title, url}) => (
-            // スタイルはまた後で考える
-            <div class={styles.item} key={id}>
+            <div class={styles.item} style={{"backgroundColor": BGArray[Math.floor(Math.random() * (BGArray.length))]}} key={id}>
               <h3>
-                {/* 後でタイトルから「○○ができるサイト」という形式に変更 */}
                 {features}
               </h3>
               <p class={styles.title}>サイト名:{title}</p>
               <div class={styles.linkWrapper}>
-                {/* リンクへのジャンプ機能が少しおかしいので後で修正 */}
                 <a href={url} class={styles.jumpLink}>サイトへ行く</a>
                 <a href={`/detail/${id}`} class={styles.jumpDetail}>詳細</a>
               </div>

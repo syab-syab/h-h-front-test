@@ -1,7 +1,9 @@
 ---
 import Header from "../components/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro"
+import TagIndexItem from "../components/tagIndex/tagIndexItem.astro";
 import {client} from "../library/microcms"
+import {BGArray} from "../library/randomcolor"
 
 export async function getStaticPaths() {
   const tags = await client.get({
@@ -35,28 +37,35 @@ const mainTag = searchTag.contents.find((t: any) => t.id === `${tagId}`)
     全{items.totalCount}件
     {
       items.contents.map((item: any) => (
-        <div class="item">
-          <h3>
-            {item.features}
-          </h3>
-          <p class="title">
-            サイト名:{item.title}
-          </p>
-          <div class="linkWrapper">
-            <a href={item.url} class="jumpLink">
-              サイトへ行く
-            </a>
-            <a href={`/detail/${item.id}`} class="jumpDetail">
-              詳細
-            </a>
-          </div>
-        </div>
+        <TagIndexItem
+          features={item.features}
+          title={item.title}
+          url={item.url}
+          id={item.id}
+          backGroundColor={BGArray[Math.floor(Math.random() * (BGArray.length))]}
+        />
+        // <div class="item">
+        //   <h3>
+        //     {item.features}
+        //   </h3>
+        //   <p class="title">
+        //     サイト名:{item.title}
+        //   </p>
+        //   <div class="linkWrapper">
+        //     <a href={item.url} class="jumpLink">
+        //       サイトへ行く
+        //     </a>
+        //     <a href={`/detail/${item.id}`} class="jumpDetail">
+        //       詳細
+        //     </a>
+        //   </div>
+        // </div>
       ))
     }
   </div>
 </BaseLayout>
 
-<style>
+<!-- <style>
 .item {
 	margin: 5px 5px 5px;
 	padding: 5px 5px 5px;
@@ -64,7 +73,6 @@ const mainTag = searchTag.contents.find((t: any) => t.id === `${tagId}`)
 }
 
 .item:nth-child(1) {
-	
 	background-color: #9BF6FF;
 }
 
@@ -99,11 +107,8 @@ const mainTag = searchTag.contents.find((t: any) => t.id === `${tagId}`)
 	border: solid 1px #ffffff70;
 	text-decoration: none;
 	color: black;
-	/* margin: 10px 20px; */
 	padding: 3px;
 	font-size: 10px;
-	/* box-shadowの値を使いまわしたい */
-	/* box-shadow: 1px 1px 2px #8b8b8b; */
 }
 
 .jumpLink {
@@ -117,4 +122,4 @@ const mainTag = searchTag.contents.find((t: any) => t.id === `${tagId}`)
 .jumpLink:active, .jumpDetail:active {
 	box-shadow: 1px 1px 2px #dad5d5 inset;
 }
-</style>
+</style> -->

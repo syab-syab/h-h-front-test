@@ -2,6 +2,8 @@
 import type { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk';
 import { type WebContent } from '../library/microcms';
 import IndexItem from './IndexItem.astro';
+// import { bgcolor } from '../library/randomcolor';
+import { BGArray }from '../library/randomcolor'
 
 interface Props {
  data: (Pick<WebContent, 'title'> & {
@@ -15,12 +17,6 @@ interface Props {
 }
 
 const { data, currentPage, lastPage, urlPrev, urlNext } = Astro.props;
-// BGArrayは切り分けた方が良いかも
-// TopSectionとかで使うから
-const BGArray = [
-  "#ff8e8e", "#ff8ec6", "#ff8eff", "#c68eff", "#8e8eff", "#8ec6ff", "#8effff", "#8effc6", "#8eff8e", "#c6ff8e", "#ffff8e", "#ffc68e"
-]
-// const itemBGColor = BGArray[1]
 ---
 <h1>
 {currentPage === 1 ? <></> : <h1>{currentPage}ページ</h1>}
@@ -35,7 +31,7 @@ const BGArray = [
         shortdescription={content.shortdescription}
         url={content.url}
         id={content.id}
-        backGroundColor={BGArray[Math.floor(Math.random() * (BGArray.length + 1))]}
+        backGroundColor={BGArray[Math.floor(Math.random() * (BGArray.length))]}
       />
     ))
   }

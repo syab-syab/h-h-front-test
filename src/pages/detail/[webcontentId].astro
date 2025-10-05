@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import TopSection from '../../components/detail/TopSection.astro';
 import ImageList from '../../components/detail/popup/ImageList.astro';
 import DescriptionSection from '../../components/detail/DescriptionSection.astro';
+import { BGArray } from '../../library/randomcolor';
 import { getWebContents, getWebContentDetail } from "../../library/microcms";
 
 export async function getStaticPaths() {
@@ -26,7 +27,13 @@ const images = webcontent.images
 ---
 <BaseLayout pageTitle={siteFetures}>
   <Header />
-  <TopSection siteFeatures={siteFetures} siteTitle={siteTitle} shortDescription={shortDescription} siteUrl={siteUrl} />
+  <TopSection
+    siteFeatures={siteFetures}
+    siteTitle={siteTitle}
+    shortDescription={shortDescription}
+    siteUrl={siteUrl}
+    backGroundColor={BGArray[Math.floor(Math.random() * (BGArray.length))]}
+  />
   <ImageList images={images} />
   <DescriptionSection siteDescription={siteDescription} />
 </BaseLayout>

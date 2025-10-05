@@ -1,52 +1,32 @@
-/* SearchButtons */
+---
+const {features, title, url, id, backGroundColor} = Astro.props
+---
+<div class="item">
+  <h3>
+    {features}
+  </h3>
+  <p class="title">
+    サイト名:{title}
+  </p>
+  <div class="linkWrapper">
+    <a href={url} class="jumpLink">
+      サイトへ行く
+    </a>
+    <a href={`/detail/${id}`} class="jumpDetail">
+      詳細
+    </a>
+  </div>
+</div>
 
-.formWrapper {
-	/* marginはとりあえずの値 */
-	margin: 30px auto;
-}
-
-.formLabel {
-	/* labelには効かないっぽい */
-	margin-bottom: 3px;
-}
-
-.searchBar {
-	width: 100%;
-	/* heightはとりあえずの値 */
-	height: 35px;
-	border: 1px solid black;
-	border-radius: 4px;
-}
-
-.searchBtn {
-	width: 100%;
-	background: transparent;
-	border: 0.5px solid transparent;
-	font-size: 15px;
-	padding: 5px;
-}
-
-/* BlogSearch */
+<style define:vars={{ backGroundColor }}>
 .item {
 	margin: 5px 5px 5px;
 	padding: 5px 5px 5px;
+  background-color: var(--backGroundColor);
 	box-shadow: 1px 1px 2px #dad5d5;
 }
 
-/* .item:nth-child(1) {
-	
-	background-color: #9BF6FF;
-}
-
-.item:nth-child(2) {
-	background-color: #FFADAD;
-}
-
-.item:nth-child(3) {
-	background-color: #CAFFBF;
-}
-
-.item-wrapper > .item:nth-child(4) {
+/* .item-wrapper > .item:nth-child(4) {
 	background-color: #9BF6FF;
 } */
 
@@ -87,3 +67,4 @@
 .jumpLink:active, .jumpDetail:active {
 	box-shadow: 1px 1px 2px #dad5d5 inset;
 }
+</style>
