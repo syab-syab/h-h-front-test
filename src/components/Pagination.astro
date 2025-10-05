@@ -14,7 +14,6 @@ interface Props {
 }
 
 const { data, currentPage, lastPage, urlPrev, urlNext } = Astro.props;
-console.log("Pagination.astro=",lastPage)
 ---
 <h1>
 {currentPage === 1 ? <></> : <h1>{currentPage}ページ</h1>}
@@ -32,26 +31,50 @@ console.log("Pagination.astro=",lastPage)
 				</p>
 				<div class="link-wrapper">
 					<a href={content.url} class="jump-link">サイトへ行く</a>
-					<a href={`detail/${content.id}`} class="jump-detail">詳細</a>
+          {/* detail/id だとエラーが出るから */}
+          {/* 直前に/を付けて /detail/id にする */}
+					<a href={`/detail/${content.id}`} class="jump-detail">詳細</a>
 				</div>
 			</div>
     ))
   }
 
 </div>
-<div>
+<div class="pageBtnWrapper">
   <a href={urlPrev} class:list={['setPage', { invalid: !urlPrev }]}>{'< Next'}</a>
-  {
-    [...Array(lastPage)].map((_, id) => (
-      <a class:list={['pageNumber', { active: currentPage === id + 1 }]} href={id === 0 ? '/' : `/page/${id + 1}/`}>
-        {id + 1}
-      </a>
-    ))
-  }
+  <div class="pageNumberWrapper">
+    {
+      [...Array(lastPage)].map((_, id) => (
+        <a class:list={['pageNumber', { active: currentPage === id + 1 }]} href={id === 0 ? '/' : `/page/${id + 1}/`}>
+          {id + 1}
+        </a>
+      ))
+    }
+    <!-- <a href="#" class="pageNumber">7</a>
+    <a href="#" class="pageNumber">8</a>
+    <a href="#" class="pageNumber">9</a>
+    <a href="#" class="pageNumber">10</a>
+    <a href="#" class="pageNumber">11</a>
+    <a href="#" class="pageNumber">12</a>
+    <a href="#" class="pageNumber">13</a>
+    <a href="#" class="pageNumber">14</a>
+    <a href="#" class="pageNumber">15</a> -->
+  </div>
   <a href={urlNext} class:list={['setPage', { invalid: !urlNext }]}>{'Prev >'}</a>
 </div>
 
 <style>
+.pageBtnWrapper {
+    display: flex;
+    justify-content: space-around;
+}
+.pageNumberWrapper {
+  white-space: nowrap;
+  /* overflow-x: scroll; */
+  overflow-x: auto;
+  width: 40%;
+}
+
 .pageNumber {
   color: black;
   text-decoration: none;

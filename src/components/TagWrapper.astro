@@ -10,7 +10,6 @@ const tags = await client.get({
 ---
 <div class="tag-wrapper">
 	<!-- タグは後で切り出す -->
-	<!-- <span>#タグ</span> -->
 	{
 		tags.contents.map((tag: any) => (
 			<div class="tag">
@@ -21,15 +20,26 @@ const tags = await client.get({
 			</div>
 		))
 	}
+	<!-- <div class="tag"><a href="#">#テスト</a></div>
+	<div class="tag"><a href="#">#テスト</a></div>
+	<div class="tag"><a href="#">#テスト</a></div>
+	<div class="tag"><a href="#">#テスト</a></div>
+	<div class="tag"><a href="#">#テスト</a></div>
+	<div class="tag"><a href="#">#テスト</a></div>
+	<div class="tag"><a href="#">#テスト</a></div>
+	<div class="tag"><a href="#">#テスト</a></div> -->
 </div>
 
 <style>
 	.tag-wrapper {
-		display: flex;
+		/* display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		justify-content: center;
+		justify-content: center; */
 		padding: 15px 0;
+		/* overflow-y: scroll; */
+		overflow-x: auto;
+		white-space: nowrap;
 	}
 
 	.tag {
@@ -38,6 +48,7 @@ const tags = await client.get({
 		padding: 3px;
 		/* box-shadowの値を使いまわしたい */
 		box-shadow: 1px 1px 2px #8b8b8b;
+		display: inline;
 	}
 
 	.tag:active {

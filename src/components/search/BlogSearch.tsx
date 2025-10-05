@@ -36,7 +36,7 @@ const BlogSearch = () => {
               <div class={styles.linkWrapper}>
                 {/* リンクへのジャンプ機能が少しおかしいので後で修正 */}
                 <a href={url} class={styles.jumpLink}>サイトへ行く</a>
-                <a href={id} class={styles.jumpDetail}>詳細</a>
+                <a href={`/detail/${id}`} class={styles.jumpDetail}>詳細</a>
               </div>
             </div>
           ))}
