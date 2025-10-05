@@ -14,6 +14,7 @@ interface Props {
 }
 
 const { data, currentPage, lastPage, urlPrev, urlNext } = Astro.props;
+console.log("Pagination.astro=",lastPage)
 ---
 <h1>
 {currentPage === 1 ? <></> : <h1>{currentPage}ページ</h1>}
@@ -24,14 +25,12 @@ const { data, currentPage, lastPage, urlPrev, urlNext } = Astro.props;
     data.map((content: any) => (
 			<div class="item">
 				<h3 class="item-title">
-					{/* 後でタイトルから「○○ができるサイト」という形式に変更 */}
 					{content.features}
 				</h3>
 				<p class="item-description">
 					{content.shortdescription}
 				</p>
 				<div class="link-wrapper">
-					{/* リンクへのジャンプ機能が少しおかしいので後で修正 */}
 					<a href={content.url} class="jump-link">サイトへ行く</a>
 					<a href={`detail/${content.id}`} class="jump-detail">詳細</a>
 				</div>
@@ -42,7 +41,6 @@ const { data, currentPage, lastPage, urlPrev, urlNext } = Astro.props;
 </div>
 <div>
   <a href={urlPrev} class:list={['setPage', { invalid: !urlPrev }]}>{'< Next'}</a>
-  <!-- ページ数が多くなったら変更しそう -->
   {
     [...Array(lastPage)].map((_, id) => (
       <a class:list={['pageNumber', { active: currentPage === id + 1 }]} href={id === 0 ? '/' : `/page/${id + 1}/`}>

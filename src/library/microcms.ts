@@ -1,4 +1,3 @@
-// SDK利用準備
 import type { MicroCMSQueries, MicroCMSListContent } from "microcms-js-sdk";
 import { createClient } from "microcms-js-sdk";
 
@@ -7,7 +6,6 @@ export const client = createClient({
   apiKey: import.meta.env.PUBLIC_MICROCMS_API_KEY,
 });
 
-// 複数画像の型
 type ImageList = {
   url: string,
   height: number,
@@ -15,8 +13,6 @@ type ImageList = {
   alt: string
 }
 
-// 型定義
-// 旧Blog
 export type WebContent = {
   title: string;
   features: string;
@@ -26,13 +22,11 @@ export type WebContent = {
   images: Array<ImageList>;
 } & MicroCMSListContent;
 
-// APIの呼び出し
-// 旧getBlogs
+
 export const getWebContents = async (queries?: MicroCMSQueries) => {
   return await client.getList<WebContent>({ endpoint: "webcontents", queries });
 };
 
-// 旧getBlogDetail
 export const getWebContentDetail = async (
   contentId: string,
   queries?: MicroCMSQueries
@@ -43,8 +37,3 @@ export const getWebContentDetail = async (
     queries,
   });
 };
-
-// type Creator = {
-//   name: string;
-//   classification: string;
-// }

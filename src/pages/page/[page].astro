@@ -1,7 +1,6 @@
 ---
 import Header from '../../components/Header.astro';
 import Pagination from '../../components/Pagination.astro';
-// import Layout from '../../layouts/Layout.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getWebContents } from '../../library/microcms';
 import type { GetStaticPathsOptions } from 'astro';
@@ -9,11 +8,24 @@ import type { MicroCMSListResponse } from 'microcms-js-sdk';
 import { type WebContent } from '../../library/microcms';
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
-const response: MicroCMSListResponse<Pick<WebContent, 'title'>> = await getWebContents({ fields: ["id", "features", "shortdescription", "url"] });
- return paginate(response.contents, { pageSize: 3 });
+// const response: MicroCMSListResponse<Pick<WebContent, 'title'>> = await getWebContents({ fields: ["id", "features", "shortdescription", "url"] });
+const response: MicroCMSListResponse<Pick<WebContent, 'title'>> = await getWebContents({ fields: ["id", "features", "shortdescription", "url"],limit: 1 });
+//  return paginate(response.contents, { pageSize: 3 });
+
+  // totalCount を元に空配列を作る
+  const allItems = Array.from({ length: response.totalCount });
+
+  return paginate(allItems, { pageSize: 4 });
 };
 
+
+
 const { page } = Astro.props;
+const response = await getWebContents({
+  fields: ["id", "features", "shortdescription", "url"],
+  limit: 4,
+  offset: (page.currentPage - 1) * 3,
+});
 const isFirstPage = page.url.prev === '/page/1';
 ---
 
@@ -21,7 +33,7 @@ const isFirstPage = page.url.prev === '/page/1';
 <Header />
  <main>
    <Pagination
-     data={page.data}
+     data={response.contents}
      currentPage={page.currentPage}
      lastPage={page.lastPage}
      urlPrev={`${isFirstPage ? '/' : page.url.prev}`}

@@ -3,31 +3,26 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import Header from '../components/Header.astro'
 import Catchphrase from '../components/Catchphrase.astro'
 import TagWrapper from '../components/TagWrapper.astro'
-// import ItemWrapper from '../components/ItemWrapper.astro'
 import ProfileWrapper from '../components/ProfileWrapper.astro'
 const pageTitle = "HandyHacks"
 
 import Pagination from '../components/Pagination.astro'
 import { getWebContents } from '../library/microcms'
-// microCMSからPageSize分の記事を取得
 const page = await getWebContents({ fields: ["id", "features", "shortdescription", "url"], limit: 4 });
 
-// 最終ページ番号
-const lastPage = Math.ceil(page.totalCount / 3);
-// 次のページのURL
+const lastPage = Math.ceil(page.totalCount / 4);
 const urlNext = lastPage > 1 ? '/page/2' : undefined;
 ---
-<!-- 二度もpageTitleを代入するのはくどいかも -->
 <BaseLayout pageTitle={pageTitle}>
-	<!-- 一時的にhrタグで区切る -->
-	<!-- <Header siteTitle={pageTitle} /> -->
 	<Header />
 	<Catchphrase />
 	<TagWrapper />
-
-	<!-- <ItemWrapper /> -->
-	<Pagination data={page.contents} currentPage={1} lastPage={lastPage} urlPrev={undefined} urlNext={urlNext} />
-
-
+	<Pagination
+		data={page.contents}
+		currentPage={1}
+		lastPage={lastPage}
+		urlPrev={undefined}
+		urlNext={urlNext}
+	/>
 	<ProfileWrapper />
 </BaseLayout>
