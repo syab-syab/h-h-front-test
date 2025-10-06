@@ -31,24 +31,8 @@
 	margin: 5px 5px 5px;
 	padding: 5px 5px 5px;
 	box-shadow: 1px 1px 2px #dad5d5;
+	/* background-color: #9BF6FF; */
 }
-
-/* .item:nth-child(1) {
-	
-	background-color: #9BF6FF;
-}
-
-.item:nth-child(2) {
-	background-color: #FFADAD;
-}
-
-.item:nth-child(3) {
-	background-color: #CAFFBF;
-}
-
-.item-wrapper > .item:nth-child(4) {
-	background-color: #9BF6FF;
-} */
 
 .title {
 	font-size: 11px;

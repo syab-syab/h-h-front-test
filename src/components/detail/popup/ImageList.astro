@@ -39,6 +39,15 @@ const {images} = Astro.props
     align-content: space-between;
   }
 
+  .image-wrapper::-webkit-scrollbar {
+		background-color: transparent;
+		height: 7px;
+	}
+
+  .image-wrapper::-webkit-scrollbar-thumb {
+		background: gray;
+	}
+
   .image-wrapper > img {
     width: 30%;
     border: 1px solid transparent;

@@ -42,6 +42,15 @@ const tags = await client.get({
 		white-space: nowrap;
 	}
 
+	.tag-wrapper::-webkit-scrollbar {
+		background-color: transparent;
+		height: 7px;
+	}
+
+	.tag-wrapper::-webkit-scrollbar-thumb {
+		background: gray;
+	}
+
 	.tag {
 		background-color: #D9D9D9;
 		margin: 10px 20px;

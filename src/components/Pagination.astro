@@ -56,12 +56,22 @@ const { data, currentPage, lastPage, urlPrev, urlNext } = Astro.props;
     display: flex;
     justify-content: space-around;
 }
+
 .pageNumberWrapper {
   white-space: nowrap;
   /* overflow-x: scroll; */
   overflow-x: auto;
   width: 40%;
 }
+
+.pageNumberWrapper::-webkit-scrollbar {
+  background-color: transparent;
+  height: 5px;
+}
+
+.pageNumberWrapper::-webkit-scrollbar-thumb {
+		background: gray;
+	}
 
 .pageNumber {
   color: black;
