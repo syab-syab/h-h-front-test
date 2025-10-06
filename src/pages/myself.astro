@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"
 import Header from "../components/Header.astro"
+import TagIndexItem from "../components/tagIndex/tagIndexItem.astro";
+import { BGArray } from "../library/randomcolor"
 import { client } from "../library/microcms"
 
 // creatorは微妙だから文言を変える
@@ -17,22 +19,13 @@ const items = await client.get({
     全{items.totalCount}件
     {
       items.contents.map((item: any) => (
-        <div class="item">
-          <h3>
-            {item.features}
-          </h3>
-          <p class="title">
-            サイト名:{item.title}
-          </p>
-          <div class="linkWrapper">
-            <a href={item.url} class="jumpLink">
-              サイトへ行く
-            </a>
-            <a href={`detail/${item.id}`} class="jumpDetail">
-              詳細
-            </a>
-          </div>
-        </div>
+        <TagIndexItem
+          features={item.features}
+          title={item.title}
+          url={item.url}
+          id={item.id}
+          backGroundColor={BGArray[Math.floor(Math.random() * (BGArray.length))]}
+        />
       ))
     }
   </div>

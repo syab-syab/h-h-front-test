@@ -2,8 +2,8 @@
 import Header from "../components/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro"
 import TagIndexItem from "../components/tagIndex/tagIndexItem.astro";
-import {client} from "../library/microcms"
-import {BGArray} from "../library/randomcolor"
+import { client } from "../library/microcms"
+import { BGArray } from "../library/randomcolor"
 
 export async function getStaticPaths() {
   const tags = await client.get({
@@ -27,8 +27,6 @@ const searchTag = await client.get({
 })
 
 const mainTag = searchTag.contents.find((t: any) => t.id === `${tagId}`)
-
-// console.log()
 ---
 <BaseLayout pageTitle={`タグ : ${mainTag.name} | HandyHacks`}>
   <Header />
@@ -44,22 +42,6 @@ const mainTag = searchTag.contents.find((t: any) => t.id === `${tagId}`)
           id={item.id}
           backGroundColor={BGArray[Math.floor(Math.random() * (BGArray.length))]}
         />
-        // <div class="item">
-        //   <h3>
-        //     {item.features}
-        //   </h3>
-        //   <p class="title">
-        //     サイト名:{item.title}
-        //   </p>
-        //   <div class="linkWrapper">
-        //     <a href={item.url} class="jumpLink">
-        //       サイトへ行く
-        //     </a>
-        //     <a href={`/detail/${item.id}`} class="jumpDetail">
-        //       詳細
-        //     </a>
-        //   </div>
-        // </div>
       ))
     }
   </div>
